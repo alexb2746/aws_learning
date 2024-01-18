@@ -1,0 +1,23 @@
+options {
+  directory "/var/named";
+  dump-file "/var/named/data/cache_dump.db";
+  statistics-file "/var/named/data/named_stats.txt"; 
+  memstatistics-file "/var/named/data/named_mem_stats.txt";
+  allow-query { any; };
+  allow-transfer { localhost; 192.168.10.152 };
+  recursion yes; 
+  forward first; 
+  forwarders {
+    192.168.0.2; 
+  };
+  dnssec-enable yes;
+  dnssec-validation yes;
+  dnssec-lookaside auto;
+  /* Path to ISC DLV key */
+  bindkeys-file "/etc/named.iscdlv.key"; 
+  managed-keys-directory "/var/named/dynamic";
+};
+zone "onprem.com" IN {
+  type master;
+  file "onprem.com.zone"; allow-update { none; };
+};

@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   region  = "us-east-1"
-  profile = "znet-sandbox"
+  profile = "#yourprofile"
 }
 
 ###################################
@@ -146,8 +146,8 @@ resource "aws_instance" "cloud-app" {
 
   tags = {
     Name    = "Cloud app"
-    Service = "ZNET - testing"
-    Team    = "ZNET"
+    Service = " - testing"
+    Team    = ""
   }
 }
 
@@ -161,7 +161,7 @@ resource "aws_security_group" "cloud-app-sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["192.211.15.0/24", "76.112.210.9/32", "35.0.192.17/32"]
+    cidr_blocks = #your public ips in an array
   }
   ingress {
     from_port   = 0
@@ -464,7 +464,7 @@ resource "aws_security_group" "onprem-vpn-server" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["192.211.15.0/24", "76.112.210.9/32", "35.0.192.17/32"]
+    cidr_blocks = #your public ips in an array
   }
   ingress {
     from_port   = 0
@@ -493,8 +493,8 @@ resource "aws_instance" "onprem-vpn-server" {
 
   tags = {
     Name    = "on-prem VPN SERVER"
-    Service = "ZNET - testing"
-    Team    = "ZNET"
+    Service = " - testing"
+    Team    = "testing"
   }
 }
 
@@ -509,8 +509,8 @@ resource "aws_instance" "onprem-app" {
 
   tags = {
     Name    = "on-prem app server"
-    Service = "ZNET - testing"
-    Team    = "ZNET"
+    Service = " - testing"
+    Team    = "testing"
   }
 }
 
@@ -524,7 +524,7 @@ resource "aws_instance" "onprem-DNS-server" {
 
   tags = {
     Name    = "on-prem DNS SERVER"
-    Service = "ZNET - testing"
-    Team    = "ZNET"
+    Service = " - testing"
+    Team    = "testing"
   }
 }
